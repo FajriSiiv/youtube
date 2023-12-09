@@ -2,12 +2,17 @@
 
 import { formatDate } from "@/hooks/formatDate";
 import { formatNumberDecimal } from "@/hooks/formatViews";
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { motion } from "framer-motion";
+import { useStore } from "@/store/store";
+import SkeletonCard from "./skeleton/skeletonCard";
 
 const Card = (props: any) => {
+  const { isLoading }: any = useStore();
   const { card } = props;
+
+  if (isLoading === true) return <SkeletonCard />;
 
   return (
     <motion.div className="flex flex-col gap-2">

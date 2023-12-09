@@ -1,13 +1,14 @@
 "use client";
 import Card from "@/components/card";
-import SkeletonCard from "@/components/skeleton/skeletonCard";
 import React, { useEffect, useState } from "react";
-import { dataDutube } from "../../data/dataDutube";
 import { motion } from "framer-motion";
+import { useStore } from "@/store/store";
 
 const MainPage = () => {
-  const [data, setData] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { dataYoutube, filteredData, searchValue, loadingPage }: any =
+    useStore();
+
+  const displayData = searchValue ? filteredData : dataYoutube;
 
   const container = {
     hidden: { opacity: 1 },
@@ -29,10 +30,7 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setData(dataDutube);
-      setIsLoading(false);
-    }, 3000);
+    loadingPage();
   }, []);
 
   return (
@@ -42,8 +40,8 @@ const MainPage = () => {
       initial="hidden"
       animate="visible"
     >
-      {data &&
-        data.slice(0, 10).map((card: any, index: any) => (
+      {displayData &&
+        displayData.map((card: any, index: any) => (
           <motion.div
             variants={item}
             transition={{ delay: index * 0.2 }}
@@ -52,8 +50,6 @@ const MainPage = () => {
             <Card card={card} />
           </motion.div>
         ))}
-
-      {isLoading && [0, 1, 2, 3, 4, 5, 6].map(() => <SkeletonCard />)}
     </motion.div>
   );
 };
