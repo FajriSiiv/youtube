@@ -1,6 +1,6 @@
 "use client";
 import { useStore } from "@/store/store";
-import { Menu, Search } from "lucide-react";
+import { Bell, Menu, Search } from "lucide-react";
 import React, { useRef } from "react";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
@@ -37,29 +37,31 @@ const Navbar = () => {
         >
           <Menu />
         </Button>
-        <h1 className="text-2xl italic font-bold">Dutube</h1>
+        <h1 className="text-2xl italic font-bold max-md:hidden">Dutube</h1>
       </div>
-      <div className="flex items-center flex-[5] justify-between px-5">
+      <div className="flex items-center flex-[5] justify-between px-5 max-md:flex-[7] max-md:px-1 max-sm:gap-1">
         <form
           onSubmit={handleSearch}
-          className=" flex items-center w-4/6 gap-2"
+          className=" flex items-center w-4/6 gap-2 max-md:w-5/6 max-sm:gap-0"
         >
           <Input
             placeholder="Telusuri"
             className="focus-visible:ring-transparent rounded-tl-full rounded-bl-full"
             ref={inputRef}
           />
-          <Button variant="secondary" type="submit">
+          <Button variant="secondary" type="submit" className="max-sm:p-2">
             <Search />
           </Button>
         </form>
-        <div className="flex gap-x-2">
-          <Avatar>
-            <AvatarFallback>HL</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>HL</AvatarFallback>
-          </Avatar>
+        <div className="flex gap-x-2 max-md:w-1/6 justify-end">
+          <Button
+            size="icon"
+            className="rounded-full max-md:hidden"
+            variant="ghost"
+          >
+            <Bell />
+          </Button>
+
           <Avatar>
             <AvatarFallback>HL</AvatarFallback>
           </Avatar>

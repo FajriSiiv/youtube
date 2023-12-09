@@ -49,7 +49,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={`w-1/6 transition-all ${sidebarState ? "w-[75px]" : ""}`}>
+    <div
+      className={`w-1/6 transition-all ${
+        sidebarState ? "w-[75px]" : "max-lg:-translate-x-0 max-md:w-fit "
+      } max-lg:absolute bg-white h-fit z-10 max-lg:-translate-x-full`}
+    >
       <div className="flex flex-col px-2 gap-1">
         <ButtonSidebar
           iconBtn={<LayoutGrid />}
@@ -61,7 +65,7 @@ const Sidebar = () => {
 
         <Separator className="my-3" />
 
-        {!sidebarState ? <p className="ml-2">Lainnya dari Dutube</p> : null}
+        {/* {!sidebarState ? <p className="ml-2">Lainnya dari Dutube</p> : null} */}
 
         <ButtonSidebar
           iconBtn={<Gamepad2 />}

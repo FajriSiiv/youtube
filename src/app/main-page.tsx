@@ -35,7 +35,7 @@ const MainPage = () => {
 
   return (
     <motion.div
-      className="grid grid-cols-card gap-7 px-10"
+      className="grid grid-cols-card gap-7 px-10 max-sm:px-2"
       variants={container}
       initial="hidden"
       animate="visible"
